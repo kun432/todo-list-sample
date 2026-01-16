@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ToDoリスト</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="app">
+    <header class="app-header">
+      <h1>ToDoリスト</h1>
+      <p class="app-subtitle">やることを追加して管理します。</p>
+    </header>
+
+    <section class="app-input" aria-label="追加フォーム">
+      <form id="todo-form">
+        <label class="sr-only" for="todo-input">やること</label>
+        <input id="todo-input" type="text" placeholder="例：郵便物を出す" autocomplete="off" maxlength="80" required>
+        <button type="submit">追加</button>
+      </form>
+      <p class="hint" id="hint">空のままは追加できません。</p>
+    </section>
+
+    <section class="app-list" aria-label="ToDo一覧">
+      <ul id="todo-list"></ul>
+    </section>
+
+    <section class="app-footer" aria-label="操作">
+      <div class="status">
+        <span id="count-all">残り 0 件</span>
+      </div>
+      <div class="actions">
+        <button id="clear-all" type="button">すべて消す</button>
+      </div>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
