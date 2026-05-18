@@ -75,6 +75,15 @@ button:hover {
   background: var(--accent-strong);
 }
 
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+button:disabled:hover {
+  background: var(--accent);
+}
+
 .hint {
   margin: 8px 0 0;
   font-size: 13px;
@@ -102,12 +111,6 @@ button:hover {
   background: #f0fff4;
   border: 1px solid var(--border);
   border-radius: 12px;
-  transition: opacity 0.25s ease, transform 0.25s ease;
-}
-
-.todo-item.removing {
-  opacity: 0;
-  transform: translateY(-6px);
 }
 
 .todo-item input[type="checkbox"] {
@@ -116,7 +119,9 @@ button:hover {
 }
 
 .todo-text {
+  min-width: 0;
   font-size: 16px;
+  overflow-wrap: anywhere;
 }
 
 .todo-text.done {
@@ -157,6 +162,10 @@ button:hover {
 
 .actions button:hover {
   background: #548f69;
+}
+
+.actions button:disabled:hover {
+  background: #6daa80;
 }
 
 .sr-only {

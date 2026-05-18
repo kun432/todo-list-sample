@@ -4,6 +4,7 @@ const form = document.getElementById("todo-form");
 const input = document.getElementById("todo-input");
 const list = document.getElementById("todo-list");
 const countAll = document.getElementById("count-all");
+const clearDoneButton = document.getElementById("clear-done");
 const clearAllButton = document.getElementById("clear-all");
 
 let todos = [];
@@ -14,8 +15,17 @@ function loadTodos() {
 
   try {
     const data = JSON.parse(raw);
-    if (Array.isArray(data)) return data;
-    return [];
+    if (!Array.isArray(data)) return [];
+
+    return data
+      .filter((item) => item && typeof item === "object")
+      .map((item) => ({
+        id: typeof item.id === "string" && item.id ? item.id : crypto.randomUUID(),
+        text: typeof item.text === "string" ? item.text.trim() : "",
+        done: Boolean(item.done),
+        createdAt: Number.isFinite(item.createdAt) ? item.createdAt : Date.now(),
+      }))
+      .filter((item) => item.text);
   } catch {
     return [];
   }
@@ -26,7 +36,10 @@ function saveTodos() {
 }
 
 function updateCounts() {
-  countAll.textContent = `残り ${todos.length} 件`;
+  const remaining = todos.filter((item) => !item.done).length;
+  countAll.textContent = `残り ${remaining} 件`;
+  clearDoneButton.disabled = !todos.some((item) => item.done);
+  clearAllButton.disabled = todos.length === 0;
 }
 
 function renderTodos() {
@@ -40,7 +53,7 @@ function renderTodos() {
     const checkbox = document.createElement("input");
     checkbox.type = "checkbox";
     checkbox.checked = item.done;
-    checkbox.setAttribute("aria-label", "完了にする");
+    checkbox.setAttribute("aria-label", item.done ? "未完了に戻す" : "完了にする");
 
     const text = document.createElement("span");
     text.className = "todo-text";
@@ -112,15 +125,7 @@ list.addEventListener("click", (event) => {
   if (!item) return;
 
   if (target.matches("input[type=\"checkbox\"]")) {
-    if (target.checked) {
-      item.classList.add("removing");
-      item.style.pointerEvents = "none";
-      setTimeout(() => {
-        removeTodo(item.dataset.id);
-      }, 260);
-    } else {
-      toggleTodo(item.dataset.id);
-    }
+    toggleTodo(item.dataset.id);
     return;
   }
 
@@ -129,8 +134,11 @@ list.addEventListener("click", (event) => {
   }
 });
 
+clearDoneButton.addEventListener("click", () => {
+  clearDone();
+});
+
 clearAllButton.addEventListener("click", () => {
-  if (todos.length === 0) return;
   clearAll();
 });
 
