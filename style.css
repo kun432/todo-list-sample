@@ -1,12 +1,12 @@
 :root {
   color-scheme: light;
-  --bg: #f5f2ee;
+  --bg: #eef5f0;
   --panel: #ffffff;
-  --ink: #1c1b1a;
-  --muted: #6b645c;
-  --accent: #c07a2f;
-  --accent-strong: #a65f19;
-  --border: #e4ddd6;
+  --ink: #17221b;
+  --muted: #607064;
+  --accent: #2f8a57;
+  --accent-strong: #236b43;
+  --border: #d8e5dc;
 }
 
 * {
@@ -17,7 +17,7 @@ body {
   margin: 0;
   font-family: "Hiragino Sans", "Noto Sans JP", sans-serif;
   color: var(--ink);
-  background: radial-gradient(1200px 800px at 80% -10%, #fff4e8 0%, var(--bg) 60%);
+  background: radial-gradient(1200px 800px at 80% -10%, #e6f7eb 0%, var(--bg) 60%);
 }
 
 .app {
@@ -27,7 +27,7 @@ body {
   background: var(--panel);
   border: 1px solid var(--border);
   border-radius: 16px;
-  box-shadow: 0 24px 60px rgba(30, 22, 15, 0.12);
+  box-shadow: 0 24px 60px rgba(18, 42, 25, 0.12);
 }
 
 .app-header h1 {
@@ -57,7 +57,7 @@ input[type="text"] {
   font-size: 16px;
   border-radius: 10px;
   border: 1px solid var(--border);
-  background: #fffaf5;
+  background: #f7fcf8;
 }
 
 button {
@@ -99,7 +99,7 @@ button:hover {
   gap: 12px;
   align-items: center;
   padding: 12px 14px;
-  background: #fff8f1;
+  background: #f0fff4;
   border: 1px solid var(--border);
   border-radius: 12px;
   transition: opacity 0.25s ease, transform 0.25s ease;
@@ -125,11 +125,11 @@ button:hover {
 }
 
 .todo-delete {
-  background: #e6b17a;
+  background: #79b98f;
 }
 
 .todo-delete:hover {
-  background: #cf8b3e;
+  background: #5b9f73;
 }
 
 .app-footer {
@@ -152,11 +152,11 @@ button:hover {
 }
 
 .actions button {
-  background: #d4a276;
+  background: #6daa80;
 }
 
 .actions button:hover {
-  background: #b78253;
+  background: #548f69;
 }
 
 .sr-only {
