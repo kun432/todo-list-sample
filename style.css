@@ -1,5 +1,5 @@
 :root {
-  color-scheme: light;
+  color-scheme: light dark;
   --bg: #eef5f0;
   --panel: #ffffff;
   --ink: #17221b;
@@ -7,6 +7,14 @@
   --accent: #2f8a57;
   --accent-strong: #236b43;
   --border: #d8e5dc;
+  --glow: #e6f7eb;
+  --input-bg: #f7fcf8;
+  --item-bg: #f0fff4;
+  --shadow: rgba(18, 42, 25, 0.12);
+  --delete: #79b98f;
+  --delete-hover: #5b9f73;
+  --secondary: #6daa80;
+  --secondary-hover: #548f69;
 }
 
 * {
@@ -17,7 +25,7 @@ body {
   margin: 0;
   font-family: "Hiragino Sans", "Noto Sans JP", sans-serif;
   color: var(--ink);
-  background: radial-gradient(1200px 800px at 80% -10%, #e6f7eb 0%, var(--bg) 60%);
+  background: radial-gradient(1200px 800px at 80% -10%, var(--glow) 0%, var(--bg) 60%);
 }
 
 .app {
@@ -27,7 +35,7 @@ body {
   background: var(--panel);
   border: 1px solid var(--border);
   border-radius: 16px;
-  box-shadow: 0 24px 60px rgba(18, 42, 25, 0.12);
+  box-shadow: 0 24px 60px var(--shadow);
 }
 
 .app-header h1 {
@@ -57,7 +65,12 @@ input[type="text"] {
   font-size: 16px;
   border-radius: 10px;
   border: 1px solid var(--border);
-  background: #f7fcf8;
+  background: var(--input-bg);
+  color: var(--ink);
+}
+
+input[type="text"]::placeholder {
+  color: var(--muted);
 }
 
 button {
@@ -99,7 +112,7 @@ button:hover {
   gap: 12px;
   align-items: center;
   padding: 12px 14px;
-  background: #f0fff4;
+  background: var(--item-bg);
   border: 1px solid var(--border);
   border-radius: 12px;
   transition: opacity 0.25s ease, transform 0.25s ease;
@@ -125,11 +138,11 @@ button:hover {
 }
 
 .todo-delete {
-  background: #79b98f;
+  background: var(--delete);
 }
 
 .todo-delete:hover {
-  background: #5b9f73;
+  background: var(--delete-hover);
 }
 
 .app-footer {
@@ -152,11 +165,31 @@ button:hover {
 }
 
 .actions button {
-  background: #6daa80;
+  background: var(--secondary);
 }
 
 .actions button:hover {
-  background: #548f69;
+  background: var(--secondary-hover);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0e1712;
+    --panel: #16231b;
+    --ink: #edf7ef;
+    --muted: #a6b8ab;
+    --accent: #54c27f;
+    --accent-strong: #76d99a;
+    --border: #2d4435;
+    --glow: #183e28;
+    --input-bg: #102017;
+    --item-bg: #12291b;
+    --shadow: rgba(0, 0, 0, 0.36);
+    --delete: #3f8e60;
+    --delete-hover: #54a873;
+    --secondary: #357a52;
+    --secondary-hover: #489163;
+  }
 }
 
 .sr-only {
